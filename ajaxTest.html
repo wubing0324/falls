@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>POST方式的Ajax</title>
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<script src="js/json2.js"></script>
+		<script>
+			var xhr = getXhr();
+			xhr.open("get", "json/data.json");
+
+			xhr.send(null);
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if(xhr.status == 200) {
+						var dataInt = xhr.responseText;
+						console.log(JSON.parse(dataInt).data[0].src);
+						alert(JSON.parse(dataInt).data[0]);
+					}
+				}
+			}
+
+			function getXhr() {
+				var xhr = null;
+				if(window.XMLHttpRequest) {
+					xhr = new XMLHttpRequest();
+				} else {
+					xhr = new ActiveXObject("Microsoft.XMLhttp");
+				}
+				return xhr;
+			}
+		</script>
+	</body>
+
+</html>
